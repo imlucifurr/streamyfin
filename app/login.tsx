@@ -1,4 +1,4 @@
-import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 import type { PublicSystemInfo } from "@jellyfin/sdk/lib/generated-client";
 import { Image } from "expo-image";
 import { useLocalSearchParams, useNavigation } from "expo-router";
@@ -6,6 +6,7 @@ import { t } from "i18next";
 import { useAtomValue } from "jotai";
 import { useCallback, useEffect, useState } from "react";
 import {
+  ActivityIndicator,
   Alert,
   Keyboard,
   KeyboardAvoidingView,
@@ -19,32 +20,22 @@ import { z } from "zod";
 import { Button } from "@/components/Button";
 import { Input } from "@/components/common/Input";
 import { Text } from "@/components/common/Text";
-import JellyfinServerDiscovery from "@/components/JellyfinServerDiscovery";
-import { PreviousServersList } from "@/components/PreviousServersList";
 import { SaveAccountModal } from "@/components/SaveAccountModal";
 import { Colors } from "@/constants/Colors";
 import { apiAtom, useJellyfin } from "@/providers/JellyfinProvider";
-import type {
-  AccountSecurityType,
-  SavedServer,
-} from "@/utils/secureCredentials";
+import type { AccountSecurityType } from "@/utils/secureCredentials";
 
 const CredentialsSchema = z.object({
   username: z.string().min(1, t("login.username_required")),
 });
 
+const DEFAULT_SERVER_URL = "https://jellyfin.weflix.me";
+
 const Login: React.FC = () => {
   const api = useAtomValue(apiAtom);
   const navigation = useNavigation();
   const params = useLocalSearchParams();
-  const {
-    setServer,
-    login,
-    removeServer,
-    initiateQuickConnect,
-    loginWithSavedCredential,
-    loginWithPassword,
-  } = useJellyfin();
+  const { setServer, login, initiateQuickConnect } = useJellyfin();
 
   const {
     apiUrl: _apiUrl,
@@ -52,9 +43,8 @@ const Login: React.FC = () => {
     password: _password,
   } = params as { apiUrl: string; username: string; password: string };
 
-  const [loadingServerCheck, setLoadingServerCheck] = useState<boolean>(false);
+  const [, setLoadingServerCheck] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
-  const [serverURL, setServerURL] = useState<string>(_apiUrl || "");
   const [serverName, setServerName] = useState<string>("");
   const [credentials, setCredentials] = useState<{
     username: string;
@@ -71,6 +61,7 @@ const Login: React.FC = () => {
     username: string;
     password: string;
   } | null>(null);
+  const [autoConnecting, setAutoConnecting] = useState(false);
 
   /**
    * A way to auto login based on a link
@@ -96,22 +87,9 @@ const Login: React.FC = () => {
   useEffect(() => {
     navigation.setOptions({
       headerTitle: serverName,
-      headerLeft: () =>
-        api?.basePath ? (
-          <TouchableOpacity
-            onPress={() => {
-              removeServer();
-            }}
-            className='flex flex-row items-center pr-2 pl-1'
-          >
-            <Ionicons name='chevron-back' size={18} color={Colors.primary} />
-            <Text className=' ml-1 text-purple-600'>
-              {t("login.change_server")}
-            </Text>
-          </TouchableOpacity>
-        ) : null,
+      headerLeft: () => null,
     });
-  }, [serverName, navigation, api?.basePath]);
+  }, [serverName, navigation]);
 
   const handleLogin = async () => {
     Keyboard.dismiss();
@@ -170,29 +148,6 @@ const Login: React.FC = () => {
         securityType,
         pinCode,
       });
-    }
-  };
-
-  const handleQuickLoginWithSavedCredential = async (
-    serverUrl: string,
-    userId: string,
-  ) => {
-    await loginWithSavedCredential(serverUrl, userId);
-  };
-
-  const handlePasswordLogin = async (
-    serverUrl: string,
-    username: string,
-    password: string,
-  ) => {
-    await loginWithPassword(serverUrl, username, password);
-  };
-
-  const handleAddAccount = (server: SavedServer) => {
-    // Server is already selected, go to credential entry
-    setServer({ address: server.address });
-    if (server.name) {
-      setServerName(server.name);
     }
   };
 
@@ -290,6 +245,20 @@ const Login: React.FC = () => {
     } catch {}
   }, []);
 
+  useEffect(() => {
+    (async () => {
+      if (_apiUrl || api?.basePath || autoConnecting) {
+        return;
+      }
+      setAutoConnecting(true);
+      try {
+        await handleConnect(DEFAULT_SERVER_URL);
+      } finally {
+        setAutoConnecting(false);
+      }
+    })();
+  }, [_apiUrl, api?.basePath, autoConnecting, handleConnect]);
+
   const handleQuickConnect = async () => {
     try {
       const code = await initiateQuickConnect();
@@ -328,14 +297,11 @@ const Login: React.FC = () => {
                 {serverName ? (
                   <>
                     {`${t("login.login_to_title")} `}
-                    <Text className='text-purple-500'>{serverName}</Text>
+                    <Text style={{ color: "#e50914" }}>{serverName}</Text>
                   </>
                 ) : (
                   t("login.login_title")
                 )}
-              </Text>
-              <Text className='text-xs text-neutral-400 mb-6'>
-                {api.basePath}
               </Text>
 
               {/* Username */}
@@ -392,82 +358,32 @@ const Login: React.FC = () => {
                 <Button
                   onPress={handleLogin}
                   disabled={!credentials.username.trim()}
+                  color='white'
                 >
                   {t("login.login_button")}
                 </Button>
               </View>
               <View className='mt-3'>
-                <Button
-                  onPress={handleQuickConnect}
-                  className='bg-neutral-800 border border-neutral-700'
-                >
+                <Button onPress={handleQuickConnect} color='white'>
                   {t("login.quick_connect")}
                 </Button>
               </View>
             </View>
           </View>
         ) : (
-          // ------------ Server connect view ------------
           <View className='flex-1 items-center justify-center'>
-            <View className='w-[92%] max-w-[900px] -mt-2'>
-              <View className='items-center mb-1'>
-                <Image
-                  source={require("@/assets/images/icon-ios-plain.png")}
-                  style={{ width: 110, height: 110 }}
-                  contentFit='contain'
-                />
-              </View>
-
+            <View className='w-[92%] max-w-[900px] -mt-2 items-center'>
               <Text className='text-white text-4xl font-bold text-center'>
-                Streamyfin
+                WEFLIX
               </Text>
-              <Text className='text-neutral-400 text-base text-left mt-2 mb-1'>
-                {t("server.enter_url_to_jellyfin_server")}
+              <Text className='text-neutral-400 text-base text-center mt-3'>
+                Connecting to your server...
               </Text>
-
-              {/* Full-width Input with clear focus ring */}
-              <Input
-                aria-label='Server URL'
-                placeholder={t("server.server_url_placeholder")}
-                onChangeText={setServerURL}
-                value={serverURL}
-                keyboardType='url'
-                returnKeyType='done'
-                autoCapitalize='none'
-                textContentType='URL'
-                maxLength={500}
-                autoFocus={false}
-                blurOnSubmit={true}
-              />
-
-              {/* Full-width primary button */}
+              <Text className='text-neutral-500 text-xs text-center mt-1'>
+                {DEFAULT_SERVER_URL}
+              </Text>
               <View className='mt-4'>
-                <Button
-                  onPress={async () => {
-                    await handleConnect(serverURL);
-                  }}
-                >
-                  {t("server.connect_button")}
-                </Button>
-              </View>
-
-              {/* Lists stay full width but inside max width container */}
-              <View className='mt-2'>
-                <JellyfinServerDiscovery
-                  onServerSelect={async (server: any) => {
-                    setServerURL(server.address);
-                    if (server.serverName) setServerName(server.serverName);
-                    await handleConnect(server.address);
-                  }}
-                />
-                <PreviousServersList
-                  onServerSelect={async (s) => {
-                    await handleConnect(s.address);
-                  }}
-                  onQuickLogin={handleQuickLoginWithSavedCredential}
-                  onPasswordLogin={handlePasswordLogin}
-                  onAddAccount={handleAddAccount}
-                />
+                <ActivityIndicator size='small' color={Colors.primary} />
               </View>
             </View>
           </View>
@@ -489,13 +405,12 @@ const Login: React.FC = () => {
                   {serverName ? (
                     <>
                       {`${t("login.login_to_title")} `}
-                      <Text className='text-purple-600'>{serverName}</Text>
+                      <Text style={{ color: "#e50914" }}>{serverName}</Text>
                     </>
                   ) : (
                     t("login.login_title")
                   )}
                 </Text>
-                <Text className='text-xs text-neutral-400'>{api.basePath}</Text>
                 <Input
                   placeholder={t("login.username_placeholder")}
                   onChangeText={(text) =>
@@ -563,18 +478,19 @@ const Login: React.FC = () => {
                     onPress={handleLogin}
                     loading={loading}
                     disabled={!credentials.username.trim()}
+                    color='white'
                     className='flex-1 mr-2'
                   >
                     {t("login.login_button")}
                   </Button>
                   <TouchableOpacity
                     onPress={handleQuickConnect}
-                    className='p-2 bg-neutral-900 rounded-xl h-12 w-12 flex items-center justify-center'
+                    className='p-2 bg-white rounded-xl h-12 w-12 flex items-center justify-center border border-gray-200'
                   >
                     <MaterialCommunityIcons
                       name='cellphone-lock'
                       size={24}
-                      color='white'
+                      color='black'
                     />
                   </TouchableOpacity>
                 </View>
@@ -585,7 +501,7 @@ const Login: React.FC = () => {
           </View>
         ) : (
           <View className='flex flex-col flex-1 items-center justify-center w-full'>
-            <View className='flex flex-col gap-y-2 px-4 w-full -mt-36'>
+            <View className='flex flex-col gap-y-2 px-4 w-full -mt-36 items-center'>
               <Image
                 style={{
                   width: 100,
@@ -595,48 +511,16 @@ const Login: React.FC = () => {
                 }}
                 source={require("@/assets/images/icon-ios-plain.png")}
               />
-              <Text className='text-3xl font-bold'>Streamyfin</Text>
+              <Text className='text-3xl font-bold'>WEFLIX</Text>
               <Text className='text-neutral-500'>
-                {t("server.enter_url_to_jellyfin_server")}
+                Connecting to your server...
               </Text>
-              <Input
-                aria-label='Server URL'
-                placeholder={t("server.server_url_placeholder")}
-                onChangeText={setServerURL}
-                value={serverURL}
-                keyboardType='url'
-                returnKeyType='done'
-                autoCapitalize='none'
-                textContentType='URL'
-                maxLength={500}
-              />
-              <Button
-                loading={loadingServerCheck}
-                disabled={loadingServerCheck}
-                onPress={async () => {
-                  await handleConnect(serverURL);
-                }}
-                className='w-full grow'
-              >
-                {t("server.connect_button")}
-              </Button>
-              <JellyfinServerDiscovery
-                onServerSelect={async (server) => {
-                  setServerURL(server.address);
-                  if (server.serverName) {
-                    setServerName(server.serverName);
-                  }
-                  await handleConnect(server.address);
-                }}
-              />
-              <PreviousServersList
-                onServerSelect={async (s) => {
-                  await handleConnect(s.address);
-                }}
-                onQuickLogin={handleQuickLoginWithSavedCredential}
-                onPasswordLogin={handlePasswordLogin}
-                onAddAccount={handleAddAccount}
-              />
+              <Text className='text-neutral-600 text-xs'>
+                {DEFAULT_SERVER_URL}
+              </Text>
+              <View className='mt-4'>
+                <ActivityIndicator size='small' color={Colors.primary} />
+              </View>
             </View>
           </View>
         )}

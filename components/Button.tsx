@@ -78,6 +78,7 @@ export interface ButtonProps
   children?: string | ReactNode;
   loading?: boolean;
   color?: "purple" | "red" | "black" | "transparent" | "white";
+  customColor?: string;
   variant?: "solid" | "border";
   iconRight?: ReactNode;
   iconLeft?: ReactNode;
@@ -91,6 +92,7 @@ export const Button: React.FC<PropsWithChildren<ButtonProps>> = ({
   disabled = false,
   loading = false,
   color = "purple",
+  customColor,
   variant = "solid",
   iconRight,
   iconLeft,
@@ -116,6 +118,14 @@ export const Button: React.FC<PropsWithChildren<ButtonProps>> = ({
   const textColorClass =
     color === "white" && variant === "solid" ? "text-black" : "text-white";
 
+  const customColorStyle =
+    customColor && variant === "solid"
+      ? {
+          backgroundColor: customColor,
+          borderColor: customColor,
+        }
+      : undefined;
+
   return Platform.isTV ? (
     <Pressable
       className='w-full'
@@ -140,6 +150,7 @@ export const Button: React.FC<PropsWithChildren<ButtonProps>> = ({
         }}
       >
         <View
+          style={customColorStyle}
           className={`rounded-2xl py-5 items-center justify-center 
             ${colorClasses}
             ${className}`}
@@ -152,6 +163,7 @@ export const Button: React.FC<PropsWithChildren<ButtonProps>> = ({
     </Pressable>
   ) : (
     <TouchableOpacity
+      style={customColorStyle}
       className={`
         p-3 rounded-xl items-center justify-center
         ${(loading || disabled) && "opacity-50"}
