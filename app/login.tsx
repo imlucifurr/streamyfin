@@ -401,7 +401,7 @@ const Login: React.FC = () => {
           <View className='flex flex-col flex-1 justify-center'>
             <View className='px-4 w-full'>
               <View className='flex flex-col space-y-2'>
-                <Text className='text-2xl font-bold -mb-2'>
+                <Text className='text-2xl font-bold mb-2'>
                   {serverName ? (
                     <>
                       {`${t("login.login_to_title")} `}

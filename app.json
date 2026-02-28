@@ -42,7 +42,7 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/icon-android-plain.png",
         "monochromeImage": "./assets/images/icon-android-themed.png",
-        "backgroundColor": "#2E2E2E"
+        "backgroundColor": "#e50914"
       },
       "package": "com.lutheragda.weflix",
       "permissions": [
@@ -105,7 +105,7 @@
         {
           "backgroundColor": "#010101",
           "image": "./assets/images/icon-ios-plain.png",
-          "imageWidth": 100
+          "imageWidth": 200
         }
       ],
       [
