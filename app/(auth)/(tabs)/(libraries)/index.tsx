@@ -61,6 +61,10 @@ export default function index() {
   }, [data]);
 
   const insets = useSafeAreaInsets();
+  const useThreeCardFillLayout =
+    settings?.libraryOptions?.display !== "row" &&
+    settings?.libraryOptions?.imageStyle === "cover" &&
+    libraries.length === 3;
 
   if (isLoading)
     return (
@@ -77,6 +81,32 @@ export default function index() {
         </Text>
       </View>
     );
+
+  if (useThreeCardFillLayout) {
+    return (
+      <View
+        style={{
+          flex: 1,
+          paddingTop: Platform.OS === "android" ? 17 : 0,
+          paddingBottom: 150,
+          paddingLeft: insets.left + 17,
+          paddingRight: insets.right + 17,
+        }}
+      >
+        {libraries.map((library, index) => (
+          <View
+            key={library.Id}
+            style={{
+              flex: 1,
+              marginBottom: index < libraries.length - 1 ? 16 : 0,
+            }}
+          >
+            <LibraryItemCard library={library} fillHeight />
+          </View>
+        ))}
+      </View>
+    );
+  }
 
   return (
     <FlashList

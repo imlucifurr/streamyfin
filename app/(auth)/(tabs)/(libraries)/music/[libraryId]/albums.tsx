@@ -100,7 +100,7 @@ export default function AlbumsScreen() {
           <RefreshControl
             refreshing={false}
             onRefresh={refetch}
-            tintColor='#9334E9'
+            tintColor='#e50914'
           />
         }
         onEndReached={handleEndReached}

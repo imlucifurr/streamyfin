@@ -173,7 +173,7 @@ export const DownloadCard = ({ process, ...props }: DownloadCardProps) => {
 
             {isTranscoding && (
               <View className='bg-purple-600/20 px-2 py-0.5 rounded-md mt-1 self-start'>
-                <Text className='text-xs text-purple-400'>Transcoding</Text>
+                <Text className='text-xs text-[#b7b7b7]'>Transcoding</Text>
               </View>
             )}
 
@@ -199,7 +199,7 @@ export const DownloadCard = ({ process, ...props }: DownloadCardProps) => {
             {/* Row 2: Speed + ETA */}
             <View className='flex flex-row items-center gap-x-2 mt-0.5'>
               {process.speed && process.speed > 0 && (
-                <Text className='text-xs text-purple-400'>
+                <Text className='text-xs text-[#b7b7b7]'>
                   {bytesToMB(process.speed).toFixed(2)} MB/s
                 </Text>
               )}

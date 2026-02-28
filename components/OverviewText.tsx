@@ -32,7 +32,7 @@ export const OverviewText: React.FC<Props> = ({
         <View>
           <Text>{tc(text, limit)}</Text>
           {text.length > characterLimit && (
-            <Text className='text-purple-600 mt-1'>
+            <Text className='text-[#b7b7b7] mt-1'>
               {limit === characterLimit
                 ? t("item_card.show_more")
                 : t("item_card.show_less")}

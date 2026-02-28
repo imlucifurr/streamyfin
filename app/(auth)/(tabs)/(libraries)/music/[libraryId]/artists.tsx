@@ -137,7 +137,7 @@ export default function ArtistsScreen() {
           <RefreshControl
             refreshing={false}
             onRefresh={refetch}
-            tintColor='#9334E9'
+            tintColor='#e50914'
           />
         }
         onEndReached={handleEndReached}

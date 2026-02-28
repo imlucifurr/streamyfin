@@ -283,7 +283,7 @@ export const defaultValues: Settings = {
   hideVolumeSlider: false,
   hideBrightnessSlider: false,
   usePopularPlugin: true,
-  showLargeHomeCarousel: false,
+  showLargeHomeCarousel: true,
   mergeNextUpAndContinueWatching: false,
   // Appearance
   hideRemoteSessionButton: false,

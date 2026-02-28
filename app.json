@@ -16,7 +16,7 @@
         "NSCameraUsageDescription": "The app needs access to your camera to scan barcodes.",
         "NSMicrophoneUsageDescription": "The app needs access to your microphone.",
         "UIBackgroundModes": ["audio", "fetch"],
-        "NSLocalNetworkUsageDescription": "The app needs access to your local network to connect to your Jellyfin server.",
+        "NSLocalNetworkUsageDescription": "The app needs access to your local network to connect to your Jellyfin serrver.",
         "NSLocationWhenInUseUsageDescription": "Streamyfin uses your location to detect your home WiFi network for automatic local server switching.",
         "NSAppTransportSecurity": {
           "NSAllowsArbitraryLoads": true
@@ -112,7 +112,7 @@
         "expo-notifications",
         {
           "icon": "./assets/images/notification.png",
-          "color": "#9333EA"
+          "color": "#e50914"
         }
       ],
       "expo-web-browser",

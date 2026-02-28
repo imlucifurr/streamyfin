@@ -19,6 +19,7 @@ import { TouchableItemRouter } from "../common/TouchableItemRouter";
 
 interface Props extends TouchableOpacityProps {
   library: BaseItemDto;
+  fillHeight?: boolean;
 }
 
 type IconName = React.ComponentProps<typeof Ionicons>["name"];
@@ -38,7 +39,11 @@ const icons: Record<CollectionType, IconName> = {
   trailers: "videocam",
   unknown: "help-circle",
 } as const;
-export const LibraryItemCard: React.FC<Props> = ({ library, ...props }) => {
+export const LibraryItemCard: React.FC<Props> = ({
+  library,
+  fillHeight = false,
+  ...props
+}) => {
   const [api] = useAtom(apiAtom);
   const [user] = useAtom(userAtom);
   const { settings } = useSettings();
@@ -128,8 +133,13 @@ export const LibraryItemCard: React.FC<Props> = ({ library, ...props }) => {
 
   if (settings?.libraryOptions?.imageStyle === "cover") {
     return (
-      <TouchableItemRouter item={library} className='w-full'>
-        <View className='flex justify-center rounded-xl w-full relative border border-neutral-900 h-20 '>
+      <TouchableItemRouter
+        item={library}
+        className={`w-full ${fillHeight ? "h-full" : ""}`}
+      >
+        <View
+          className={`flex justify-center rounded-xl w-full relative border border-neutral-900 ${fillHeight ? "h-full" : "h-20"}`}
+        >
           <View
             style={{
               width: "100%",

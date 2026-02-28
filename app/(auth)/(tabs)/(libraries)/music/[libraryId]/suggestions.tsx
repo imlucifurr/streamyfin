@@ -281,7 +281,7 @@ export default function SuggestionsScreen() {
           <RefreshControl
             refreshing={false}
             onRefresh={handleRefresh}
-            tintColor='#9334E9'
+            tintColor='#e50914'
           />
         }
         renderItem={({ item: section }) => (

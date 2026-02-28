@@ -588,7 +588,7 @@ const PlayerView: React.FC<PlayerViewProps> = ({
           <Ionicons
             name='shuffle'
             size={24}
-            color={shuffleEnabled ? "#9334E9" : "#666"}
+            color={shuffleEnabled ? "#e50914" : "#666"}
           />
         </TouchableOpacity>
 
@@ -631,7 +631,7 @@ const PlayerView: React.FC<PlayerViewProps> = ({
           <Ionicons
             name={getRepeatIcon() as any}
             size={24}
-            color={repeatMode !== "off" ? "#9334E9" : "#666"}
+            color={repeatMode !== "off" ? "#e50914" : "#666"}
           />
           {repeatMode === "one" && (
             <View className='absolute right-0 top-1 bg-purple-600 rounded-full w-4 h-4 items-center justify-center'>
@@ -682,7 +682,7 @@ const PlayerView: React.FC<PlayerViewProps> = ({
               <ExpoAvRoutePickerView
                 style={{ width: 24, height: 24 }}
                 tintColor='#666666'
-                activeTintColor='#9334E9'
+                activeTintColor='#e50914'
               />
             </View>
           )}
@@ -691,7 +691,7 @@ const PlayerView: React.FC<PlayerViewProps> = ({
             style={{
               width: 24,
               height: 24,
-              tintColor: isCastConnected ? "#9334E9" : "#666",
+              tintColor: isCastConnected ? "#e50914" : "#666",
               transform: [{ translateY: 1 }],
             }}
           />
@@ -757,7 +757,7 @@ const QueueView: React.FC<QueueViewProps> = ({
               <Ionicons
                 name='reorder-three'
                 size={20}
-                color={isActive ? "#9334E9" : "#666"}
+                color={isActive ? "#e50914" : "#666"}
               />
             </TouchableOpacity>
 
@@ -781,7 +781,7 @@ const QueueView: React.FC<QueueViewProps> = ({
             <View className='flex-1 mr-2'>
               <Text
                 numberOfLines={1}
-                className={`text-base ${isCurrentTrack ? "text-purple-400 font-semibold" : "text-white"}`}
+                className={`text-base ${isCurrentTrack ? "text-[#b7b7b7] font-semibold" : "text-white"}`}
               >
                 {item.Name}
               </Text>
@@ -792,7 +792,7 @@ const QueueView: React.FC<QueueViewProps> = ({
 
             {/* Now playing indicator */}
             {isCurrentTrack && (
-              <Ionicons name='musical-note' size={16} color='#9334E9' />
+              <Ionicons name='musical-note' size={16} color='#e50914' />
             )}
 
             {/* Remove button (not for current track) */}

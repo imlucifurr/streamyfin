@@ -131,10 +131,10 @@ export const PlaylistSortSheet: React.FC<Props> = ({
                   <Ionicons
                     name={option.icon as any}
                     size={22}
-                    color={isSelected ? "#9334E9" : "#fff"}
+                    color={isSelected ? "#e50914" : "#fff"}
                   />
                   <Text
-                    className={`ml-4 text-base flex-1 ${isSelected ? "text-purple-500 font-medium" : "text-white"}`}
+                    className={`ml-4 text-base flex-1 ${isSelected ? "text-[#b7b7b7] font-medium" : "text-white"}`}
                   >
                     {t(option.label)}
                   </Text>
@@ -145,12 +145,12 @@ export const PlaylistSortSheet: React.FC<Props> = ({
                           sortOrder === "Ascending" ? "arrow-up" : "arrow-down"
                         }
                         size={18}
-                        color='#9334E9'
+                        color='#e50914'
                       />
                       <Ionicons
                         name='checkmark'
                         size={22}
-                        color='#9334E9'
+                        color='#e50914'
                         style={{ marginLeft: 8 }}
                       />
                     </View>

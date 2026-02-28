@@ -175,7 +175,7 @@ export const SeasonPicker: React.FC<Props> = ({ item }) => {
                 <Ionicons name='download' size={20} color='white' />
               )}
               DownloadedIconComponent={() => (
-                <Ionicons name='download' size={20} color='#9333ea' />
+                <Ionicons name='download' size={20} color='#e50914' />
               )}
             />
             <PlayedStatus items={episodes || []} />

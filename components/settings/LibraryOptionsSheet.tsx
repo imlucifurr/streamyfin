@@ -67,7 +67,7 @@ const OptionItem: React.FC<{
     >
       <Text className='flex-1 text-white'>{label}</Text>
       {selected ? (
-        <Ionicons name='checkmark-circle' size={24} color='#9333ea' />
+        <Ionicons name='checkmark-circle' size={24} color='#e50914' />
       ) : (
         <Ionicons name='ellipse-outline' size={24} color='#6b7280' />
       )}

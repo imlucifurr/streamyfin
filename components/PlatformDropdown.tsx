@@ -87,7 +87,7 @@ const OptionItem: React.FC<{ option: Option; isLast?: boolean }> = ({
         {isToggle ? (
           <ToggleSwitch value={option.value} />
         ) : isAction ? null : (option as RadioOption).selected ? (
-          <Ionicons name='checkmark-circle' size={24} color='#9333ea' />
+          <Ionicons name='checkmark-circle' size={24} color='#e50914' />
         ) : (
           <Ionicons name='ellipse-outline' size={24} color='#6b7280' />
         )}

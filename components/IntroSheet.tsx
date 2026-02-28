@@ -173,7 +173,7 @@ export const IntroSheet = forwardRef<IntroSheetRef>((_, ref) => {
                       );
                     }}
                   >
-                    <Text className='text-xs text-purple-600 underline'>
+                    <Text className='text-xs text-[#b7b7b7] underline'>
                       {t("home.intro.read_more")}
                     </Text>
                   </TouchableOpacity>
@@ -187,7 +187,7 @@ export const IntroSheet = forwardRef<IntroSheetRef>((_, ref) => {
               {t("home.intro.done_button")}
             </Button>
             <TouchableOpacity onPress={handleGoToSettings} className='mt-4'>
-              <Text className='text-purple-600 text-center'>
+              <Text className='text-[#b7b7b7] text-center'>
                 {t("home.intro.go_to_settings_button")}
               </Text>
             </TouchableOpacity>

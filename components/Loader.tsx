@@ -10,7 +10,7 @@ export const Loader: React.FC<Props> = ({ ...props }) => {
   return (
     <ActivityIndicator
       size={"small"}
-      color={Platform.OS === "ios" ? "white" : "#9333ea"}
+      color={Platform.OS === "ios" ? "white" : "#e50914"}
       {...props}
     />
   );

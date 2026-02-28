@@ -48,7 +48,7 @@ export const RoundButton: React.FC<PropsWithChildren<Props>> = ({
           <Ionicons
             name={icon}
             size={size === "large" ? 22 : 18}
-            color={color === "white" ? "white" : "#9334E9"}
+            color={color === "white" ? "white" : "#e50914"}
           />
         ) : null}
         {children ? children : null}
@@ -105,7 +105,7 @@ export const RoundButton: React.FC<PropsWithChildren<Props>> = ({
           <Ionicons
             name={icon}
             size={size === "large" ? 22 : 18}
-            color={color === "white" ? "white" : "#9334E9"}
+            color={color === "white" ? "white" : "#e50914"}
           />
         ) : null}
         {children ? children : null}

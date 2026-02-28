@@ -214,7 +214,7 @@ export default function AlbumDetailScreen() {
           <Text className='text-white text-xl font-bold mt-4 text-center'>
             {album.Name}
           </Text>
-          <Text className='text-purple-400 text-base mt-1'>
+          <Text className='text-[#b7b7b7] text-base mt-1'>
             {album.AlbumArtist || album.Artists?.join(", ")}
           </Text>
           <Text className='text-neutral-500 text-sm mt-1'>

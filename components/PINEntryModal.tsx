@@ -215,7 +215,7 @@ export const PINEntryModal: React.FC<PINEntryModalProps> = ({
 
           {/* Forgot PIN */}
           <TouchableOpacity onPress={handleForgotPIN} className='mb-4'>
-            <Text className='text-purple-400 text-center'>
+            <Text className='text-[#b7b7b7] text-center'>
               {t("pin.forgot_pin")}
             </Text>
           </TouchableOpacity>

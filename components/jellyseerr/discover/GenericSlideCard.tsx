@@ -30,7 +30,7 @@ const GenericSlideCard: React.FC<
   id,
   url,
   title,
-  colors = ["#9333ea", "transparent"],
+  colors = ["#e50914", "transparent"],
   contentFit = "contain",
   ...props
 }) => (

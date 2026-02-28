@@ -378,7 +378,7 @@ const SessionsButton = () => {
     >
       <Ionicons
         name='play-circle'
-        color={sessions.length === 0 ? "white" : "#9333ea"}
+        color={sessions.length === 0 ? "white" : "#e50914"}
         size={28}
       />
     </Pressable>

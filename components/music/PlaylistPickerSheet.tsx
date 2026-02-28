@@ -187,14 +187,14 @@ export const PlaylistPickerSheet: React.FC<Props> = ({
           <View className='w-12 h-12 rounded-lg bg-purple-600 items-center justify-center mr-3'>
             <Ionicons name='add' size={28} color='white' />
           </View>
-          <Text className='text-purple-400 font-semibold text-base'>
+          <Text className='text-[#b7b7b7] font-semibold text-base'>
             {t("music.playlists.create_new")}
           </Text>
         </TouchableOpacity>
 
         {isLoading ? (
           <View className='py-8 items-center'>
-            <ActivityIndicator color='#9334E9' />
+            <ActivityIndicator color='#e50914' />
           </View>
         ) : filteredPlaylists.length === 0 ? (
           <View className='py-8 items-center'>
@@ -239,7 +239,7 @@ export const PlaylistPickerSheet: React.FC<Props> = ({
                     </Text>
                   </View>
                   {addToPlaylist.isPending && (
-                    <ActivityIndicator size='small' color='#9334E9' />
+                    <ActivityIndicator size='small' color='#e50914' />
                   )}
                 </TouchableOpacity>
                 {index < filteredPlaylists.length - 1 && (

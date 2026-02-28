@@ -41,7 +41,7 @@ const WatchlistCard: React.FC<WatchlistCardProps> = ({
         <View className='flex-row items-center gap-2'>
           {isOwner && (
             <View className='bg-purple-600/20 px-2 py-1 rounded'>
-              <Text className='text-purple-400 text-xs'>
+              <Text className='text-[#b7b7b7] text-xs'>
                 {t("watchlists.you")}
               </Text>
             </View>

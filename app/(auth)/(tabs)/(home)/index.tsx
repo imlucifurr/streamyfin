@@ -4,7 +4,7 @@ import { HomeWithCarousel } from "../../../../components/home/HomeWithCarousel";
 
 const Index = () => {
   const { settings } = useSettings();
-  const showLargeHomeCarousel = settings.showLargeHomeCarousel ?? false;
+  const showLargeHomeCarousel = settings.showLargeHomeCarousel ?? true;
 
   if (showLargeHomeCarousel) {
     return <HomeWithCarousel />;

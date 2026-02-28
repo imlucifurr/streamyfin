@@ -135,7 +135,7 @@ export default function Page() {
                     className={`mb-1
                       ${log.level === "INFO" && "text-blue-500"}
                       ${log.level === "ERROR" && "text-red-500"}
-                      ${log.level === "DEBUG" && "text-purple-500"}
+                      ${log.level === "DEBUG" && "text-[#b7b7b7]"}
                     `}
                   >
                     {log.level}

@@ -13,7 +13,6 @@ import { Platform, View } from "react-native";
 import { SystemBars } from "react-native-edge-to-edge";
 import { MiniPlayerBar } from "@/components/music/MiniPlayerBar";
 import { MusicPlaybackEngine } from "@/components/music/MusicPlaybackEngine";
-import { Colors } from "@/constants/Colors";
 import { useSettings } from "@/utils/atoms/settings";
 import { eventBus } from "@/utils/eventBus";
 
@@ -38,7 +37,7 @@ export default function TabLayout() {
         tabBarStyle={{
           backgroundColor: "#121212",
         }}
-        tabBarActiveTintColor={Colors.primary}
+        tabBarActiveTintColor={"white"}
         activeIndicatorColor={"#392c3b"}
         scrollEdgeAppearance='default'
       >

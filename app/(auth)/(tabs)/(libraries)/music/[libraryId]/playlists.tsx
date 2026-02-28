@@ -184,7 +184,7 @@ export default function PlaylistsScreen() {
           <RefreshControl
             refreshing={false}
             onRefresh={refetch}
-            tintColor='#9334E9'
+            tintColor='#e50914'
           />
         }
         onEndReached={handleEndReached}
@@ -194,8 +194,8 @@ export default function PlaylistsScreen() {
             onPress={() => setSortSheetOpen(true)}
             className='flex-row items-center mb-2 py-1'
           >
-            <Ionicons name='swap-vertical' size={18} color='#9334E9' />
-            <Text className='text-purple-500 text-sm ml-1.5'>
+            <Ionicons name='swap-vertical' size={18} color='#e50914' />
+            <Text className='text-[#b7b7b7] text-sm ml-1.5'>
               {t(
                 `music.sort.${sortBy === "SortName" ? "alphabetical" : "date_created"}`,
               )}
@@ -203,7 +203,7 @@ export default function PlaylistsScreen() {
             <Ionicons
               name={sortOrder === "Ascending" ? "arrow-up" : "arrow-down"}
               size={14}
-              color='#9334E9'
+              color='#e50914'
               style={{ marginLeft: 4 }}
             />
           </TouchableOpacity>

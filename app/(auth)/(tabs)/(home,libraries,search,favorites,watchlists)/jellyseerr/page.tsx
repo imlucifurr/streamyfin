@@ -358,7 +358,7 @@ const Page: React.FC = () => {
                       </Button>
                     )}
                     <Button
-                      className='flex-1 bg-purple-600/50 border-purple-400 ring-purple-400 text-purple-100'
+                      className='flex-1 bg-purple-600/50 border-purple-400 ring-purple-400 text-[#b7b7b7]'
                       onPress={() => {
                         router.push({
                           pathname:

@@ -53,7 +53,7 @@ const Layout = () => {
           animationEnabled: true,
           lazy: true,
           swipeEnabled: true,
-          tabBarIndicatorStyle: { backgroundColor: "#9334E9" },
+          tabBarIndicatorStyle: { backgroundColor: "#e50914" },
           tabBarScrollEnabled: true,
         }}
       >

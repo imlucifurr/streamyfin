@@ -767,7 +767,10 @@ export default function search() {
               <Text className='text-center text-lg font-bold mt-4'>
                 {t("search.no_results_found_for")}
               </Text>
-              <Text className='text-xs text-purple-600 text-center'>
+              <Text
+                className='text-xs text-center'
+                style={{ color: "#f4f4f4" }}
+              >
                 "{debouncedSearch}"
               </Text>
             </View>
@@ -782,7 +785,7 @@ export default function search() {
                   key={e}
                   className='mb-2'
                 >
-                  <Text className='text-purple-600'>{e}</Text>
+                  <Text style={{ color: "#f4f4f4" }}>{e}</Text>
                 </TouchableOpacity>
               ))}
             </View>

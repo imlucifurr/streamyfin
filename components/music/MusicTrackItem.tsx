@@ -181,7 +181,7 @@ export const MusicTrackItem: React.FC<Props> = ({
           {isCurrentTrack && isPlaying && <AnimatedEqualizer />}
           <Text
             numberOfLines={1}
-            className={`flex-1 text-sm ${isCurrentTrack ? "text-purple-400 font-medium" : "text-white"}`}
+            className={`flex-1 text-sm ${isCurrentTrack ? "text-[#b7b7b7] font-medium" : "text-white"}`}
           >
             {track.Name}
           </Text>
@@ -195,7 +195,7 @@ export const MusicTrackItem: React.FC<Props> = ({
       {downloadStatus === "downloading" && (
         <ActivityIndicator
           size={14}
-          color='#9334E9'
+          color='#e50914'
           style={{ marginRight: 8 }}
         />
       )}

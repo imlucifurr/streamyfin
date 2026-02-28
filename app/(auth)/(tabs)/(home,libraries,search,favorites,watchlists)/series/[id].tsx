@@ -146,7 +146,7 @@ const page: React.FC = () => {
                   <Ionicons
                     name='checkmark-done-outline'
                     size={24}
-                    color='#9333ea'
+                    color='#e50914'
                   />
                 )}
               />

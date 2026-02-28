@@ -319,7 +319,7 @@ export const DownloadItems: React.FC<DownloadProps> = ({
             size={24}
             fill={progress}
             width={4}
-            tintColor='#9334E9'
+            tintColor='#e50914'
             backgroundColor='#bdc3c7'
           />
         </View>
@@ -486,7 +486,7 @@ export const DownloadSingleItem: React.FC<{
         <Ionicons name='cloud-download-outline' size={24} color='white' />
       )}
       DownloadedIconComponent={() => (
-        <Ionicons name='cloud-download' size={26} color='#9333ea' />
+        <Ionicons name='cloud-download' size={26} color='#e50914' />
       )}
     />
   );

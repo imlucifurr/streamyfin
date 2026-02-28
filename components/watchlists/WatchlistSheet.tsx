@@ -253,7 +253,7 @@ const WatchlistSheetContent: React.FC<WatchlistSheetContentProps> = ({
         activeOpacity={0.7}
       >
         <Ionicons name='add' size={20} color='#a78bfa' />
-        <Text className='text-purple-400 font-medium'>
+        <Text className='text-[#b7b7b7] font-medium'>
           {t("watchlists.create_new")}
         </Text>
       </TouchableOpacity>

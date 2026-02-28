@@ -67,7 +67,7 @@ const Bar: React.FC<{
 };
 
 export const AnimatedEqualizer: React.FC<Props> = ({
-  color = "#9334E9",
+  color = "#e50914",
   barWidth = 3,
   barCount = 3,
   height = 12,

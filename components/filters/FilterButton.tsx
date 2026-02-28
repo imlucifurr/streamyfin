@@ -63,7 +63,7 @@ export const FilterButton = <T,>({
         >
           <Text
             className={`
-            ${values.length > 0 ? "text-purple-100" : "text-neutral-100"}
+            ${values.length > 0 ? "text-[#b7b7b7]" : "text-neutral-100"}
             text-xs font-semibold`}
           >
             {title}
