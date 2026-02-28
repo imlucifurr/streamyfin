@@ -7,7 +7,7 @@ public class BackgroundDownloaderAppDelegate: ExpoAppDelegateSubscriber {
     handleEventsForBackgroundURLSession identifier: String,
     completionHandler: @escaping () -> Void
   ) {
-    if identifier == "com.fredrikburmester.streamyfin.backgrounddownloader" {
+    if identifier == "com.lutheragda.weflix.backgrounddownloader" {
       BackgroundDownloaderModule.setBackgroundCompletionHandler(completionHandler)
     }
   }

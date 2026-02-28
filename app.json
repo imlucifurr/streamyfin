@@ -32,7 +32,7 @@
       "entitlements": {
         "com.apple.developer.networking.wifi-info": true
       },
-      "bundleIdentifier": "com.fredrikburmester.streamyfin",
+      "bundleIdentifier": "com.lutheragda.weflix",
       "icon": "./assets/images/icon-ios-liquid-glass.icon",
       "appleTeamId": "MWD5K362T8"
     },
@@ -44,7 +44,7 @@
         "monochromeImage": "./assets/images/icon-android-themed.png",
         "backgroundColor": "#2E2E2E"
       },
-      "package": "com.fredrikburmester.streamyfin",
+      "package": "com.lutheragda.weflix",
       "permissions": [
         "android.permission.FOREGROUND_SERVICE",
         "android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK",
